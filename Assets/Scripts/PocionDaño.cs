@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PocionDaño : MonoBehaviour
 {
+    private DatosJugador datoJugador;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -12,11 +14,5 @@ public class PocionDaño : MonoBehaviour
             datoJugador.addPocionDaño();
             Destroy(gameObject);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

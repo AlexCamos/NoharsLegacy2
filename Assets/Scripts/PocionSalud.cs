@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PocionSalud : MonoBehaviour
 {
-    public float curacion;
     private DatosJugador datoJugador;
 
     private void OnTriggerEnter(Collider other)

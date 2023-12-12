@@ -9,7 +9,7 @@ public class DatosJugador : MonoBehaviour
     public float vidaJugadorInicial;
     private float vidaActual;
     public Slider barraVidaJugador;
-    public float danio;
+    public float daño;
 
     private GameObject armaPlayer;
     private BoxCollider armaPlayerCollider;
@@ -39,6 +39,10 @@ public class DatosJugador : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             usarPocionVida();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            usarPocionDaño();
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -96,18 +100,12 @@ public class DatosJugador : MonoBehaviour
 
     private void restarPocionVida()
     {
-        if(numPocionesVida > 0)
-        {
-            numPocionesVida--;
-        }
+        numPocionesVida--;
     }
 
     private void restarPocionDaño()
     {
-        if (numPocionesDaño > 0)
-        {
-            numPocionesDaño--;
-        }
+        numPocionesDaño--;
     }
 
     private void usarPocionVida()
@@ -126,6 +124,27 @@ public class DatosJugador : MonoBehaviour
             }
         }
     }
+
+    private void usarPocionDaño()
+    {
+        if (numPocionesDaño > 0)
+        {
+            restarPocionDaño();
+            daño = daño * 2;
+            StartCoroutine(EsperarYRestaurarDaño());
+        }
+        else
+        {
+            textoPocionesVida.color = Color.red;
+        }
+    }
+
+    IEnumerator EsperarYRestaurarDaño()
+    {
+        yield return new WaitForSeconds(2f);
+        daño = daño / 2;
+    }
+
     public void finalAniAtack()
     {
         animator.SetBool("IsAtacking", false);
