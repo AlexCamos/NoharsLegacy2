@@ -15,6 +15,7 @@ public class DatosJugador : MonoBehaviour
     private BoxCollider armaPlayerCollider;
 
     private int numPocionesVida;
+    private int numPocionesDaño;
 
     public TMPro.TextMeshProUGUI textoPocionesVida;
 
@@ -87,9 +88,26 @@ public class DatosJugador : MonoBehaviour
         numPocionesVida++;
     }
 
+    public void addPocionDaño()
+    {
+        //textoPocionesDaño.color = Color.white;
+        numPocionesDaño++;
+    }
+
     private void restarPocionVida()
     {
-        numPocionesVida--;
+        if(numPocionesVida > 0)
+        {
+            numPocionesVida--;
+        }
+    }
+
+    private void restarPocionDaño()
+    {
+        if (numPocionesDaño > 0)
+        {
+            numPocionesDaño--;
+        }
     }
 
     private void usarPocionVida()
